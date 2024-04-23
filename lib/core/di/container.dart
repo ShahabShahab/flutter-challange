@@ -7,6 +7,10 @@ import 'package:online_selling_interview_question/features/home/data/repositorie
 import 'package:online_selling_interview_question/features/home/domain/repositories/home_repository.dart';
 import 'package:online_selling_interview_question/features/home/domain/use_cases/home_usecase.dart';
 import 'package:online_selling_interview_question/features/home/presentation/manager/home_provider.dart';
+import 'package:online_selling_interview_question/features/seat_selection/data/repositories/seat_selection_repository_impl.dart';
+import 'package:online_selling_interview_question/features/seat_selection/domain/repositories/seat_selection_repository.dart';
+import 'package:online_selling_interview_question/features/seat_selection/domain/use_cases/seat_selection_usecase.dart';
+import 'package:online_selling_interview_question/features/seat_selection/presentation/manager/seat_selection_provider.dart';
 
 final container = GetIt.instance;
 
@@ -22,4 +26,10 @@ Future<void> initContainer() async {
   container.registerFactory<HomeUseCase>(
       () => HomeUseCase(repository: container<HomeRepository>()));
   container.registerFactory<HomeRepository>(() => HomeRepositoryImpl());
+
+  container.registerFactory<SeatSelectionProvider>(
+          () => SeatSelectionProvider(useCase: container<SeatSelectionUseCase>()));
+  container.registerFactory<SeatSelectionUseCase>(
+          () => SeatSelectionUseCase(repository: container<SeatSelectionRepository>()));
+  container.registerFactory<SeatSelectionRepository>(() => SeatSelectionRepositoryImpl());
 }

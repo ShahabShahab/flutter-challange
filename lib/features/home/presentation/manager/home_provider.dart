@@ -8,7 +8,6 @@ class HomeProvider extends BaseProvider {
   HomeProvider({required this.useCase});
 
   Future<StadiumsResponse> getStadiums() async {
-    setState(ViewState.LOADING);
     return useCase.getStadiums().then((response) {
       return response;
     });

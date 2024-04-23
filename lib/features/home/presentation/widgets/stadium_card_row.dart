@@ -13,7 +13,7 @@ class StadiumCardRow extends StatelessWidget {
           margin: const EdgeInsets.all(10),
           elevation: 5,
           color: Colors.red,
-          child: Container(
+          child: SizedBox(
             width: double.maxFinite,
             child: Center(child: Text(name)),
           ),
