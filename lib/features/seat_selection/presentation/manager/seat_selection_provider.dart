@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:online_selling_interview_question/core/base_provider.dart';
-import 'package:online_selling_interview_question/core/constants.dart';
 import 'package:online_selling_interview_question/features/seat_selection/domain/entities/seats_status_response.dart';
 import 'package:online_selling_interview_question/features/seat_selection/domain/use_cases/seat_selection_usecase.dart';
 
@@ -18,10 +17,11 @@ class SeatSelectionProvider extends BaseProvider {
     });
   }
 
-  void selectSeat(int xCoordinate, int yCoordinate) {
-    if (seatsStatus[xCoordinate][yCoordinate] == SeatStatus.reserved.index) {
-      debugPrint('SeatSelectionProvider.selectSeat already selected!');
-    } else if (seatsStatus[xCoordinate][yCoordinate] == SeatStatus.free.index) {
+  void selectSeat(int xCoordinate, int yCoordinate,
+      {required Function(String message) onSeatSelected}) {
+    if (_seatAlreadyReserved(xCoordinate, yCoordinate)) {
+      onSeatSelected("This seat is already selected!");
+    } else if (_seatIsFreeToSelect(xCoordinate, yCoordinate)) {
       seatsStatus[xCoordinate][yCoordinate] = SeatStatus.selected.index;
       setState(ViewState.IDLE);
     } else {
@@ -29,6 +29,12 @@ class SeatSelectionProvider extends BaseProvider {
       setState(ViewState.IDLE);
     }
   }
+
+  bool _seatIsFreeToSelect(int xCoordinate, int yCoordinate) =>
+      seatsStatus[xCoordinate][yCoordinate] == SeatStatus.free.index;
+
+  bool _seatAlreadyReserved(int xCoordinate, int yCoordinate) =>
+      seatsStatus[xCoordinate][yCoordinate] == SeatStatus.reserved.index;
 }
 
 enum SeatStatus { free, reserved, selected }

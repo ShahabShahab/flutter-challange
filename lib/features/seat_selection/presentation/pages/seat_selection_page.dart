@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:online_selling_interview_question/core/constants.dart';
 import 'package:online_selling_interview_question/core/custom_widgets/online_selling_scaffold.dart';
 import 'package:online_selling_interview_question/core/custom_widgets/online_selling_spacer.dart';
+import 'package:online_selling_interview_question/core/custom_widgets/online_selling_submit_button.dart';
 import 'package:online_selling_interview_question/features/seat_selection/presentation/manager/seat_selection_provider.dart';
 import 'package:online_selling_interview_question/features/seat_selection/presentation/widgets/seat_row.dart';
 import 'package:online_selling_interview_question/features/seat_selection/presentation/widgets/seats_status_description.dart';
@@ -46,26 +46,32 @@ class _Seats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return OnlineSellingScaffold(
-        body: Column(
-      children: [
-        for (int i = 0; i < seats.length; i++)
-          Row(
-            children: [
-              for (int j = 0; j < seats[i].length; j++)
-                Expanded(
-                  child: GestureDetector(
-                    onTap: () =>
-                        context.read<SeatSelectionProvider>().selectSeat(i, j),
-                    child: SeatRow(type: seats[i][j]),
-                  ),
-                )
-            ],
+      body: Column(
+        children: [
+          for (int i = 0; i < seats.length; i++)
+            Row(
+              children: [
+                for (int j = 0; j < seats[i].length; j++)
+                  Expanded(
+                    child: GestureDetector(
+                      onTap: () => context
+                          .read<SeatSelectionProvider>()
+                          .selectSeat(i, j, onSeatSelected: (message) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(message),
+                        ));
+                      }),
+                      child: SeatRow(type: seats[i][j]),
+                    ),
+                  )
+              ],
+            ),
+          const OnlineSellingSpacer(
+            height: 30,
           ),
-        const OnlineSellingSpacer(
-          height: 30,
-        ),
-        const SeatsStatusDescription()
-      ],
-    ));
+          const SeatsStatusDescription()
+        ],
+      ),
+    );
   }
 }
