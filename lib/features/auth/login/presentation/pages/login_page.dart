@@ -10,14 +10,9 @@ import 'package:online_selling_interview_question/features/home/presentation/pag
 import 'package:online_selling_interview_question/single_pages/loading_page.dart';
 import 'package:provider/provider.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatelessWidget {
+  LoginPage({Key? key}) : super(key: key);
 
-  @override
-  _LoginPageState createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -37,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
           TextField(
               obscureText: isPassword,
               controller:
-                  isPassword ? _passwordController : _usernameController,
+              isPassword ? _passwordController : _usernameController,
               decoration: const InputDecoration(
                   border: InputBorder.none,
                   fillColor: Color(0xfff3f3f4),
@@ -58,7 +53,10 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
+    final height = MediaQuery
+        .of(context)
+        .size
+        .height;
     return Scaffold(body: Consumer<LoginProvider>(
       builder:
           (BuildContext context, LoginProvider loginProvider, Widget? child) {
@@ -81,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                         const OnlineSellingSpacer(height: 50),
                         _emailPasswordWidget(),
                         const OnlineSellingSpacer(height: 20),
-                        OnlineSellingSubmitButton(onClicked: _login),
+                        OnlineSellingSubmitButton(onClicked: () => _login(context)),
                         Container(
                           padding: const EdgeInsets.symmetric(vertical: 10),
                           alignment: Alignment.centerRight,
@@ -105,7 +103,8 @@ class _LoginPageState extends State<LoginPage> {
     ));
   }
 
-  void _login() {
+
+  void _login(BuildContext context) {
     Provider.of<LoginProvider>(context, listen: false)
         .login(_usernameController.text, _passwordController.text)
         .then((response) {

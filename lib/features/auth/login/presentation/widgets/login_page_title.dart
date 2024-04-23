@@ -20,11 +20,11 @@ class LoginPageTitle extends StatelessWidget {
               style: TextStyle(color: Colors.black, fontSize: 30),
             ),
             TextSpan(
-              text: 'diu',
+              text: 'dium',
               style: TextStyle(color: Color(0xffe46b10), fontSize: 30),
             ),
             TextSpan(
-              text: 'mS',
+              text: 'S',
               style: TextStyle(color: Colors.black, fontSize: 30),
             ),
           ]),
