@@ -7,7 +7,10 @@ class LoginUseCase {
 
   LoginUseCase({required this.loginRepository});
 
-  Future<LoginResponse> login(LoginRequest request) async {
-    return await loginRepository.login(request);
+  Future<LoginResponse> login(String username, String password) async {
+    return Future.delayed(const Duration(seconds: 3), () {
+      return loginRepository
+          .login(LoginRequest(username: username, password: password));
+    });
   }
 }
