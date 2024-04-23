@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
         if (snapshot.hasData) {
           return _StadiumsList(stadiums: snapshot.data!.stadiums);
         } else {
-          return const LoadingPage();
+          return const LoadingPage(description: "Fetching Stadiums...",);
         }
       },
     );

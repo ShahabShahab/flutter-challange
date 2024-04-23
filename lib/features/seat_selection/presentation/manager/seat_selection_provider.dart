@@ -19,13 +19,16 @@ class SeatSelectionProvider extends BaseProvider {
   }
 
   void selectSeat(int xCoordinate, int yCoordinate) {
-    if (seatsStatus[xCoordinate][yCoordinate] == Constants.reserved) {
+    if (seatsStatus[xCoordinate][yCoordinate] == SeatStatus.reserved.index) {
       debugPrint('SeatSelectionProvider.selectSeat already selected!');
+    } else if (seatsStatus[xCoordinate][yCoordinate] == SeatStatus.free.index) {
+      seatsStatus[xCoordinate][yCoordinate] = SeatStatus.selected.index;
+      setState(ViewState.IDLE);
     } else {
-      seatsStatus[xCoordinate][yCoordinate] = Constants.reserved;
+      seatsStatus[xCoordinate][yCoordinate] = SeatStatus.free.index;
       setState(ViewState.IDLE);
     }
   }
 }
 
-enum SeatStatus { reserved, selected, free }
+enum SeatStatus { free, reserved, selected }

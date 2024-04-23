@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:online_selling_interview_question/core/constants.dart';
 import 'package:online_selling_interview_question/core/custom_widgets/online_selling_scaffold.dart';
+import 'package:online_selling_interview_question/core/custom_widgets/online_selling_spacer.dart';
 import 'package:online_selling_interview_question/features/seat_selection/presentation/manager/seat_selection_provider.dart';
 import 'package:online_selling_interview_question/features/seat_selection/presentation/widgets/seat_row.dart';
+import 'package:online_selling_interview_question/features/seat_selection/presentation/widgets/seats_status_description.dart';
 import 'package:online_selling_interview_question/single_pages/loading_page.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +30,9 @@ class SeatSelectionPage extends StatelessWidget {
               },
             );
           } else {
-            return const LoadingPage();
+            return const LoadingPage(
+              description: "Fetching seat status...",
+            );
           }
         });
   }
@@ -52,13 +56,15 @@ class _Seats extends StatelessWidget {
                   child: GestureDetector(
                     onTap: () =>
                         context.read<SeatSelectionProvider>().selectSeat(i, j),
-                    child: SeatRow(
-                        reserved:
-                            seats[i][j] == Constants.reserved ? true : false),
+                    child: SeatRow(type: seats[i][j]),
                   ),
                 )
             ],
-          )
+          ),
+        const OnlineSellingSpacer(
+          height: 30,
+        ),
+        const SeatsStatusDescription()
       ],
     ));
   }

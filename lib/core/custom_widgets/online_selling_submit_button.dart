@@ -11,7 +11,7 @@ class OnlineSellingSubmitButton extends StatelessWidget {
     return GestureDetector(
       onTap: onClicked,
       child: Container(
-        width: MediaQuery.of(context).size.width,
+        width: double.maxFinite,
         padding: const EdgeInsets.symmetric(vertical: 15),
         alignment: Alignment.center,
         decoration: BoxDecoration(

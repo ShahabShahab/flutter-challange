@@ -3,19 +3,26 @@ import 'package:lottie/lottie.dart';
 import 'package:online_selling_interview_question/core/custom_widgets/online_selling_spacer.dart';
 
 class LoadingPage extends StatelessWidget {
-  const LoadingPage({Key? key}) : super(key: key);
+  final String? description;
+
+  const LoadingPage({Key? key, this.description}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset('assets/loading.json'),
+            SizedBox(
+              width: 150,
+              height: 150,
+              child: Lottie.asset('assets/loading.json'),
+            ),
             const OnlineSellingSpacer(
               height: 20,
             ),
-            const Text("Please wait...")
+            Text(description ?? "Please wait...")
           ],
         ),
       ),
