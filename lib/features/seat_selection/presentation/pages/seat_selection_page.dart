@@ -19,8 +19,13 @@ class SeatSelectionPage extends StatelessWidget {
         future: provider.getSeatsStatus(stadiumId),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return _Seats(
-              seats: snapshot.data!.seats,
+            return Consumer<SeatSelectionProvider>(
+              builder: (BuildContext context, SeatSelectionProvider provider,
+                  Widget? child) {
+                return _Seats(
+                  seats: provider.seatsStatus,
+                );
+              },
             );
           } else {
             return const LoadingPage();
@@ -43,8 +48,15 @@ class _Seats extends StatelessWidget {
           Row(
             children: [
               for (int j = 0; j < seats[i].length; j++)
-                SeatRow(
-                    reserved: seats[i][j] == Constants.reserved ? false : true)
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () =>
+                        context.read<SeatSelectionProvider>().selectSeat(i, j),
+                    child: SeatRow(
+                        reserved:
+                            seats[i][j] == Constants.reserved ? true : false),
+                  ),
+                )
             ],
           )
       ],

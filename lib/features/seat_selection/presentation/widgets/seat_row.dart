@@ -7,11 +7,9 @@ class SeatRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Icon(
-        Icons.person_outline_sharp,
-        color: reserved ? Colors.red : Colors.green,
-      ),
+    return Icon(
+      Icons.person_outline_sharp,
+      color: reserved ? Colors.red : Colors.green,
     );
   }
 }
