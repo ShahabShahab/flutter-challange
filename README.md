@@ -74,4 +74,10 @@ Please fork this repository and add your code to that. Don't forget that your co
 So be sure that you're committing your code often with a proper commit message.
 
 
+![Simulator Screenshot - iPhone 14 Pro Max - 2024-04-24 at 07 36 33](https://github.com/ShahabShahab/flutter-challange/assets/26481284/a72027d9-ebae-45e7-b9fd-2943247cfee0)
 
+![Simulator Screenshot - iPhone 14 Pro Max - 2024-04-24 at 07 36 37](https://github.com/ShahabShahab/flutter-challange/assets/26481284/57dfcc76-8952-41fb-93fe-40b5d3936d39)
+
+![Simulator Screenshot - iPhone 14 Pro Max - 2024-04-24 at 07 36 44](https://github.com/ShahabShahab/flutter-challange/assets/26481284/4acb74a0-32d2-4394-92d3-4b7963c1161a)
+
+![Simulator Screenshot - iPhone 14 Pro Max - 2024-04-24 at 07 37 51](https://github.com/ShahabShahab/flutter-challange/assets/26481284/798a92aa-a257-489b-a9db-f4da8de383a0)
