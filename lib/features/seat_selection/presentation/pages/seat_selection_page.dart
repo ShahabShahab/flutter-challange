@@ -47,29 +47,34 @@ class _Seats extends StatelessWidget {
   Widget build(BuildContext context) {
     return OnlineSellingScaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          for (int i = 0; i < seats.length; i++)
-            Row(
-              children: [
-                for (int j = 0; j < seats[i].length; j++)
-                  Expanded(
-                    child: GestureDetector(
-                      onTap: () => context
-                          .read<SeatSelectionProvider>()
-                          .selectSeat(i, j, onSeatSelected: (message) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(message),
-                        ));
-                      }),
-                      child: SeatRow(type: seats[i][j]),
-                    ),
-                  )
-              ],
+          Expanded(
+            child: GridView.builder(
+              itemCount: seats.length * seats[0].length,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: seats[0].length,
+              ),
+              itemBuilder: (BuildContext context, int index) {
+                int row = index ~/ seats[0].length;
+                int column = index % seats[0].length;
+                return GestureDetector(
+                  onTap: () => context
+                      .read<SeatSelectionProvider>()
+                      .selectSeat(row, column, onSeatSelected: (message) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(message),
+                    ));
+                  }),
+                  child: SeatRow(type: seats[row][column]),
+                );
+              },
             ),
-          const OnlineSellingSpacer(
-            height: 30,
           ),
-          const SeatsStatusDescription()
+          const SeatsStatusDescription(),
+          const OnlineSellingSpacer(
+            height: 50,
+          )
         ],
       ),
     );

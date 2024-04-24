@@ -10,9 +10,12 @@ class SeatsStatusDescription extends StatelessWidget {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _SeatStatusDescriptionRow(description: "Reserved", seatStatus: SeatStatus.reserved),
-        _SeatStatusDescriptionRow(description: "Free", seatStatus: SeatStatus.free),
-        _SeatStatusDescriptionRow(description: "Selected", seatStatus: SeatStatus.selected),
+        _SeatStatusDescriptionRow(
+            description: "Reserved", seatStatus: SeatStatus.reserved),
+        _SeatStatusDescriptionRow(
+            description: "Free", seatStatus: SeatStatus.free),
+        _SeatStatusDescriptionRow(
+            description: "Selected", seatStatus: SeatStatus.selected),
       ],
     );
   }
